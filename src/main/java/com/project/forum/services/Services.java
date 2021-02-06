@@ -83,6 +83,19 @@ public class Services {
 	 */
 	public String DeleteMessage(Message message, User user) {
 		String result = null;
+		boolean operationResult = false;
+		if(message == null || user == null) {
+			return result = "Input parameters cant be null!";
+		}
+		if(!user.getRole().equals("role_user")) {
+			return result = "Users cant delete Messages. Admin rights required!";
+		}
+		operationResult = repo.RemoveMessage(message);
+		if(operationResult) {
+			return result = "Message has been deleted successfully";
+		}
+		
+		
 		return result;
 	}
 	/**Deletes a topic object from the local model store

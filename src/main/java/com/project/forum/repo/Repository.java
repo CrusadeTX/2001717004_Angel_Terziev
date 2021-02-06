@@ -64,12 +64,40 @@ public class Repository {
 		
 	}
 	/**
+	 * Deletes a message from the local store
+	 * @param message Identifies the message object to be deleted.
+	 * @return true or false depending if the message has been deleted successfully
+	 */
+	public boolean RemoveMessage(Message message) {
+		if(message!=null) {
+			return Messages.remove(message);
+		}
+		else {
+			return false;
+		}
+		
+	}
+	/**
 	 * Searches for a topic and deletes it from the local store. It deletes all  messages related to the topic as well
 	 * @param description Identifies the topic object to be deleted by its description
 	 * @return true or false depending if the topic has been deleted successfully
 	 */
 	public boolean RemoveTopic(String description) {
 		Topic topic = getTopicByDescription(description);
+				if(topic!=null) {
+					return Topics.remove(topic);
+				}
+				else {
+					return false;
+				}
+		
+	}
+	/**
+	 * Deletes a topic from the local store. It deletes all  messages related to the topic as well
+	 * @param topic Identifies the topic object to be deleted.
+	 * @return true or false depending if the topic has been deleted successfully
+	 */
+	public boolean RemoveTopic(Topic topic) {
 				if(topic!=null) {
 					return Topics.remove(topic);
 				}
