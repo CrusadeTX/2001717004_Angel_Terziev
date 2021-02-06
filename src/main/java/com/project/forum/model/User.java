@@ -1,5 +1,12 @@
 package com.project.forum.model;
 
+/**
+ * @author Angel
+ * User model containing the following attributes: Username, Password And Role
+ * String Username - identifier of the user
+ * String Password - password of the user
+ * String Role - controls the level of access and privileges that the user has.
+ */
 public class User {
 	private String username;
 	private String password;
