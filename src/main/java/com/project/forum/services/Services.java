@@ -51,30 +51,56 @@ public class Services {
 	}
 	
 	/** Posts a message under the current user context
-	 * @param message - message text to be saved
+	 * @param text - message text to be saved
 	 * @param author - author of the message
+	 * @return string containing the resulting status message of the Message posting process 
 	 */
-	public void PostMessage(String message, String author) {
+	public String PostMessage(String text, String author) {
+		String result = null;
+		boolean operationResult = false;
+		if(text == null || text.trim().isEmpty() || author == null || author.trim().isEmpty()) {
+			return result = "Please enter correct data!";
+		}
+		if(text.length()<=3 || text.length()>=255) {
+			 return result = "Message must be between 3 and 255 characters long!";
+		}
+		Message message = new Message(text,author);
+		operationResult =  repo.PostMessage(message);
+		if (operationResult) {
+			return result ="Message added successfully";
+		}
+		else {
+			return result = "Something went wrong. Message hasnt been saved!";
+		}
+		
+		
 		
 	}
 	/**Deletes a message object from the local model store
 	 * @param message - message object to be deleted
 	 * @param user - user initiating the delete procedure
+	 * @return string containing the resulting status message of the Message Deleting process 
 	 */
-	public void DeleteMessage(Message message, User user) {
-		
+	public String DeleteMessage(Message message, User user) {
+		String result = null;
+		return result;
 	}
 	/**Deletes a topic object from the local model store
 	 * @param topic - topic object to be deleted
 	 * @param user - user initiating the delete procedure
+	 * @return string containing the resulting status message of the Topic Deleting process 
 	 */
-	public void DeleteTopic (Topic topic, User user) {
-		
+	public String DeleteTopic (Topic topic, User user) {
+		String result = null;
+		return result;
 	}
 	/**Returns all messages belonging to the specified user
 	 * @param user
+	 * @return string containing the resulting status message of the Message checking process 
 	 */
-	public void CheckMessages (User user) {
+	public String CheckMessages (User user) {
+		String result = null;
+		return result;
 		
 	}
 	
