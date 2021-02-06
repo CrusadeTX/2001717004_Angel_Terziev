@@ -47,64 +47,26 @@ public class Repository {
 	public List<Topic> GetAllTopics(){
 		return Topics;
 	}
-	
-	/**
-	 * Searches for a message and deletes it from the local store
-	 * @param messageText Identifies the message object to be deleted by the text entered in it
-	 * @return true or false depending if the message has been deleted successfully
-	 */
-	public boolean RemoveMessage(String messageText) {
-		Message message = getMessageByText(messageText);
-		if(message!=null) {
-			return Messages.remove(message);
-		}
-		else {
-			return false;
-		}
-		
-	}
+
 	/**
 	 * Deletes a message from the local store
 	 * @param message Identifies the message object to be deleted.
-	 * @return true or false depending if the message has been deleted successfully
+	 * 
 	 */
-	public boolean RemoveMessage(Message message) {
-		if(message!=null) {
-			return Messages.remove(message);
-		}
-		else {
-			return false;
-		}
+	public void RemoveMessage(Message message) {
 		
-	}
-	/**
-	 * Searches for a topic and deletes it from the local store. It deletes all  messages related to the topic as well
-	 * @param description Identifies the topic object to be deleted by its description
-	 * @return true or false depending if the topic has been deleted successfully
-	 */
-	public boolean RemoveTopic(String description) {
-		Topic topic = getTopicByDescription(description);
-				if(topic!=null) {
-					return Topics.remove(topic);
-				}
-				else {
-					return false;
-				}
-		
+			 Messages.remove(message);
+	 
 	}
 	/**
 	 * Deletes a topic from the local store. It deletes all  messages related to the topic as well
 	 * @param topic Identifies the topic object to be deleted.
-	 * @return true or false depending if the topic has been deleted successfully
+	 * 
 	 */
-	public boolean RemoveTopic(Topic topic) {
-				if(topic!=null) {
-					return Topics.remove(topic);
-				}
-				else {
-					return false;
-				}
+	public void RemoveTopic(Topic topic) {
 		
+			Topics.remove(topic);
+				
 	}
 	/** Retrieves a single Topic object based on its description
 	 * @param description Used to search for a topic object containing the provided description

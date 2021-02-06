@@ -88,16 +88,14 @@ public class Services {
 		if(message == null || user == null) {
 			return result = "Input parameters cant be null!";
 		}
-		if(!user.getRole().equals("role_user")) {
+		if(user.getRole().equals("role_user")) {
 			return result = "Users cant delete Messages. Admin rights required!";
 		}
-		operationResult = repo.RemoveMessage(message);
-		if(operationResult) {
+		 repo.RemoveMessage(message);
+		
 			return result = "Message has been deleted successfully";
-		}
-		else {
-			return result = "Something went wrong! Message has not been deleted";
-		}
+		
+		
 	}
 	/**Deletes a topic object from the local model store
 	 * @param topic - topic object to be deleted
@@ -106,20 +104,19 @@ public class Services {
 	 */
 	public String DeleteTopic (Topic topic, User user) {
 		String result = null;
-		boolean operationResult = false;
+		
 		if(topic == null || user == null) {
 			return result = "Input parameters cant be null!";
 		}
-		if(!user.getRole().equals("role_user")) {
+		if(user.getRole().equals("role_user")) {
 			return result = "Users cant delete Topics. Admin rights required!";
 		}
-		operationResult = repo.RemoveTopic(topic);
-		if(operationResult) {
+		repo.RemoveTopic(topic);
+		
 			return result = "Topic has been deleted successfully";
-		}
-		else {
-			return result = "Something went wrong! Topic has not been deleted";
-		}
+		
+			
+		
 	}
 	/**Returns all messages belonging to the specified user
 	 * @param user
