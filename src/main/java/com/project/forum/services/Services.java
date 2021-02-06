@@ -1,5 +1,6 @@
 package com.project.forum.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.project.forum.model.Message;
@@ -126,6 +127,15 @@ public class Services {
 	 */
 	public String CheckMessages (User user) {
 		String result = null;
+		List<Message> messages = repo.GetAllMessages();
+		if(user == null) {
+			return result = "user cant be null!";
+		}
+		for(Message message : messages) {
+			if(message.getAuthor().equals(user.getUsername())) {
+				result+= message.getText();
+			}
+		}
 		return result;
 		
 	}
