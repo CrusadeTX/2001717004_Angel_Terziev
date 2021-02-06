@@ -62,8 +62,8 @@ public class Services {
 		if(text == null || text.trim().isEmpty() || author == null || author.trim().isEmpty()) {
 			return result = "Please enter correct data!";
 		}
-		if(text.length()<=3 || text.length()>=255) {
-			 return result = "Message must be between 3 and 255 characters long!";
+		if(text.length()<=3 || text.length()>=15) {
+			 return result = "Message must be between 3 and 15 characters long!";
 		}
 		Message message = new Message(text,author);
 		operationResult =  repo.PostMessage(message);
