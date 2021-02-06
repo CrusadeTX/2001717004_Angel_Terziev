@@ -126,17 +126,24 @@ public class Services {
 	 * @return string containing the resulting status message of the Message checking process 
 	 */
 	public String CheckMessages (User user) {
-		String result = null;
+		String result = "";
 		List<Message> messages = repo.GetAllMessages();
 		if(user == null) {
 			return result = "user cant be null!";
 		}
+		
 		for(Message message : messages) {
 			if(message.getAuthor().equals(user.getUsername())) {
 				result+= message.getText();
 			}
 		}
-		return result;
+		if(result!="") {
+			return result;
+		}
+		else {
+			return result = "No messages have been fouund!";
+		}
+		
 		
 	}
 	
