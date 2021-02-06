@@ -94,9 +94,9 @@ public class Services {
 		if(operationResult) {
 			return result = "Message has been deleted successfully";
 		}
-		
-		
-		return result;
+		else {
+			return result = "Something went wrong! Message has not been deleted";
+		}
 	}
 	/**Deletes a topic object from the local model store
 	 * @param topic - topic object to be deleted
@@ -105,7 +105,20 @@ public class Services {
 	 */
 	public String DeleteTopic (Topic topic, User user) {
 		String result = null;
-		return result;
+		boolean operationResult = false;
+		if(topic == null || user == null) {
+			return result = "Input parameters cant be null!";
+		}
+		if(!user.getRole().equals("role_user")) {
+			return result = "Users cant delete Topics. Admin rights required!";
+		}
+		operationResult = repo.RemoveTopic(topic);
+		if(operationResult) {
+			return result = "Topic has been deleted successfully";
+		}
+		else {
+			return result = "Something went wrong! Topic has not been deleted";
+		}
 	}
 	/**Returns all messages belonging to the specified user
 	 * @param user
