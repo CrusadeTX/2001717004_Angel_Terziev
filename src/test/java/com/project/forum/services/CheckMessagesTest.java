@@ -18,6 +18,10 @@ import com.project.forum.model.Message;
 import com.project.forum.model.User;
 import com.project.forum.repo.Repository;
 
+/**
+ * @author Angel
+ * Unit test for CheckMessage feature. Users can only see their own messages
+ */
 @RunWith(Parameterized.class)
 public class CheckMessagesTest {
 	@Parameters(name = "{index}: with user={0} and expected result={1}")
@@ -37,6 +41,9 @@ public class CheckMessagesTest {
 	public String expectedResult;
 	private Services CheckMessageService;
 	private Repository repo;
+	/**
+	 * Initialization
+	 */
 	@Before
 	public void setup() {
 		repo = Mockito.mock(Repository.class);
@@ -51,6 +58,9 @@ public class CheckMessagesTest {
 		
 		CheckMessageService = new Services(repo);
 	}
+	/**
+	 * Tests Check message feature with null, valid critical and invalid input parameters
+	 */
 	@Test
 	public void testCheckMessageService() {
 		final String result = CheckMessageService.CheckMessages(user);

@@ -101,8 +101,8 @@ public class Repository {
 	 * @param message 
 	 * @return true or false - whether the message has been saved successfully
 	 */
-	public boolean PostMessage(Message message) {
-		return Messages.add(message);
+	public void PostMessage(Message message) {
+		Messages.add(message);
 	}
 
 }

@@ -21,6 +21,10 @@ import com.project.forum.model.Topic;
 import com.project.forum.model.User;
 import com.project.forum.repo.Repository;
 
+/**
+ * @author Angel
+ *  Tests the Delete topic feature. Only admins can delete topics
+ */
 @RunWith(Parameterized.class)
 public class DeleteTopicTest {
 	
@@ -44,11 +48,18 @@ public class DeleteTopicTest {
 	public String expectedResult;
 	private Services DeleteTopicService;
 	private Repository repo;
+	/**
+	 * Initialization
+	 */
 	@Before
 	public void setup() {
 		repo = new Repository();
 		DeleteTopicService = new Services(repo);
 	}
+	/**
+	 * 	 Checks Delete Topic feature with null entries, critical entries - user trying to delete a message, and correct entries
+
+	 */
 	@Test
 	public void testDeleteTopic() {
 		final String result = DeleteTopicService.DeleteTopic(topic, user);

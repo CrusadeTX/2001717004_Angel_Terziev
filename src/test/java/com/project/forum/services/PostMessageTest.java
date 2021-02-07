@@ -13,6 +13,10 @@ import org.junit.runners.Parameterized.Parameters;
 
 import com.project.forum.repo.Repository;
 
+/**
+ * @author Angel
+ *Checks the Post Message functionality. Valid messages can be between 3 and 15 characters long
+ */
 @RunWith(Parameterized.class)
 public class PostMessageTest {
 	@Parameters(name = "{index}: with text={0}, author={1} and expected result={2}")
@@ -35,11 +39,17 @@ public class PostMessageTest {
 	public String expectedResult;
 	private Services PostService;
 	private Repository repo;
+	/**
+	 * Initialization
+	 */
 	@Before
 	public void setup() {
 		repo = new Repository();
 		PostService = new Services(repo);
 	}
+	/**
+	 * Checks the Post Message feature with null, valid and incorrect input entries
+	 */
 	@Test
 	public void testPostMessage() {
 		final String result = PostService.PostMessage(text, author);

@@ -58,7 +58,7 @@ public class Services {
 	 */
 	public String PostMessage(String text, String author) {
 		String result = null;
-		boolean operationResult = false;
+	
 		if(text == null || text.trim().isEmpty() || author == null || author.trim().isEmpty()) {
 			return result = "Please enter correct data!";
 		}
@@ -66,13 +66,11 @@ public class Services {
 			 return result = "Message must be between 3 and 15 characters long!";
 		}
 		Message message = new Message(text,author);
-		operationResult =  repo.PostMessage(message);
-		if (operationResult) {
+		 repo.PostMessage(message);
+		
 			return result ="Message added successfully";
-		}
-		else {
-			return result = "Something went wrong. Message hasnt been saved!";
-		}
+	
+		
 		
 		
 		

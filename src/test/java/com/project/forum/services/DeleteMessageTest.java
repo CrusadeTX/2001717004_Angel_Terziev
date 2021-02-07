@@ -20,6 +20,9 @@ import com.project.forum.repo.Repository;
 
 @RunWith(Parameterized.class)
 public class DeleteMessageTest {
+	/**
+	 * Unit test for Delete Message Feature. Only Admins can delete Messages
+	 */
 	@Parameters(name = "{index}: with Message={0} user= {1} and expected result={2}")
 	public static Iterable<Object[]> data() {
 		return Arrays.asList(new Object[][] { 
@@ -40,14 +43,20 @@ public class DeleteMessageTest {
 	public String expectedResult;
 	private Services DeleteMessageService;
 	private Repository repo;
+	/**
+	 * Initialization
+	 */
 	@Before
 	public void setup() {
-		repo = new Repository();// Mockito.mock(Repository.class);
+		repo = new Repository();
 		DeleteMessageService = new Services(repo);
 		Message message = new Message("text","userame");
-		//boolean check = doReturn(true).when(repo).RemoveMessage(message);
 		 
 	}
+	
+	/**
+	 * Checks Delete Message feature with null entries, critical entries - user trying to delete a message, and correct entries
+	 */
 	@Test
 	public void testDeleteTopic() {
 		final String result = DeleteMessageService.DeleteMessage(message, user);

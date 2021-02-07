@@ -49,7 +49,7 @@ public class LoginTest {
 	
 	@Before
 	public void setup() {
-		repo = Mockito.mock(Repository.class);//new Repository();
+		repo = Mockito.mock(Repository.class);
 		List<User>users = new ArrayList<User>();
 		users.add(new User("username","password","user_role"));
 		doReturn(users).when(repo).GetAllUsers();

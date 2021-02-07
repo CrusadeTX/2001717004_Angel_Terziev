@@ -16,21 +16,34 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import com.project.selenium.models.TrafficNewsWebPageModel;
 
+/**
+ * @author Angel
+ * Tests the UI of the webpage trafficnews
+ */
 public class TrafficNewsTest {
 	WebDriver driver;
 	TrafficNewsWebPageModel model;
 	@Rule
 	public ErrorCollector collector = new ErrorCollector();
+	/**
+	 * Sets up driver info
+	 */
 	@BeforeClass
 	public static void setupClass() {
 		System.setProperty("webdriver.chrome.driver", "driver/chromedriver.exe");
 	}
+	/**
+	 * Initial test configuration - adds the correct driver and PageObjectModel
+	 */
 	@Before
 	public void setup() {
 		driver = new ChromeDriver();
 		
 		model = new TrafficNewsWebPageModel(driver);
 	}
+	/**
+	 * Navigates to Link Plovdiv and check the corresponding URL and heading
+	 */
 	@Test
 	public void checkPlovdivPage() {
 		final String expectedURL = "https://trafficnews.bg/plovdiv/";
@@ -44,6 +57,9 @@ public class TrafficNewsTest {
 		collector.checkThat(mostRead.getText(),IsEqual.equalTo("Най-четени"));
 
 	}
+	/**
+	 * Navigates to Link Bulgaria and check the corresponding URL and heading
+	 */
 	@Test
 	public void checkBulgariaPage() {
 		final String expectedURL ="https://trafficnews.bg/bulgaria/";
@@ -56,6 +72,9 @@ public class TrafficNewsTest {
 		WebElement heading = driver.findElement(By.tagName("h1"));
 		collector.checkThat(heading.getText(),IsEqual.equalTo("България"));
 	}
+	/**
+	 * Clicks on log in button, provides sample data to login form and initiate log in procedure. Checks whether an error would appear when providing wrong username and password
+	 */
 	@Test
 	public void CheckLoginButton() {
 		final String expectedURL ="https://trafficnews.bg/login/";
@@ -77,6 +96,9 @@ public class TrafficNewsTest {
 		
 		
 	}
+	/**
+	 * Carries out a search with the parameter България and checks if the resulting URL is correct
+	 */
 	@Test
 	public void CheckSearch() {
 		final String expectedURL = "https://trafficnews.bg/page/search/?for=%D0%91%D1%8A%D0%BB%D0%B3%D0%B0%D1%80%D0%B8%D1%8F";
@@ -91,6 +113,9 @@ public class TrafficNewsTest {
 		
 	}
 
+/**
+ * Disposes of all resources which were in use
+ */
 @After
 public void after() {
 	driver.close();
