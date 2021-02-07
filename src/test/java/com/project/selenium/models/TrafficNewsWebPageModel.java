@@ -1,6 +1,5 @@
 package com.project.selenium.models;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,8 +7,8 @@ import org.openqa.selenium.support.PageFactory;
 public class TrafficNewsWebPageModel {
 	private WebDriver driver;
 
-	@FindBy(linkText = "Пловдив")
-	WebElement PlovdivLink;
+	//@FindBy(linkText = "Пловдив")
+	WebElement element;
 	
 	@FindBy(linkText = "Най-четени")
 	WebElement MostRead;
@@ -29,9 +28,12 @@ public class TrafficNewsWebPageModel {
 		return MostRead;
 		
 	}
-	public WebElement getPlovdivLink() {
-		return PlovdivLink;
+	public WebElement getLink() {
+		return element;
 		
+	}
+	public void FindElement(String name) {
+		this.element = driver.findElement(By.linkText(name));
 	}
 	
 
