@@ -2,6 +2,7 @@ package com.project.forum.services;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -11,6 +12,9 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
+import org.mockito.Mockito;
+import static org.mockito.Mockito.doReturn;
+
 import com.project.forum.repo.Repository;
 import com.project.forum.model.User;
 
@@ -45,7 +49,10 @@ public class LoginTest {
 	
 	@Before
 	public void setup() {
-		repo = new Repository();
+		repo = Mockito.mock(Repository.class);//new Repository();
+		List<User>users = new ArrayList<User>();
+		users.add(new User("username","password","user_role"));
+		doReturn(users).when(repo).GetAllUsers();
 		loginService = new Services(repo);
 	}
 	@Test
