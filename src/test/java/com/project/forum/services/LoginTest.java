@@ -19,6 +19,10 @@ import com.project.forum.repo.Repository;
 import com.project.forum.model.User;
 
 
+/**
+ * @author Angel
+ *	Tests the Log-in Feature. Only users who have supplied a username, password and repeatPassword may get authenticated
+ */
 @RunWith(Parameterized.class)
 public class LoginTest {
 	@Parameters(name = "{index}: with username={0}, password={1}, repeatPassword={2} and expected result={3}")
@@ -47,6 +51,9 @@ public class LoginTest {
 	private Services loginService;
 	private Repository repo;
 	
+	/**
+	 * initialization
+	 */
 	@Before
 	public void setup() {
 		repo = Mockito.mock(Repository.class);
@@ -55,6 +62,9 @@ public class LoginTest {
 		doReturn(users).when(repo).GetAllUsers();
 		loginService = new Services(repo);
 	}
+	/**
+	 *  Test log in feature with null, incorrect and correct entries
+	 */
 	@Test
 	public void testLoginService() {
 		final String result = loginService.LoginService(username, password, repeatPassword);

@@ -112,6 +112,24 @@ public class TrafficNewsTest {
 		collector.checkThat(result,IsEqual.equalTo(expectedURL));
 		
 	}
+	@Test
+	/**
+	 * Navigates to an uploaded article and checks if a comment can be posted without entering the code on screen
+	 */
+	public void CheckPostComment() {
+		final String expectedURL = "https://trafficnews.bg/horoskopi/";
+		driver.get("https://trafficnews.bg/plovdiv/opashki-pcr-testove-pred-laboratoriia-trakiia-202027/");
+		
+		WebElement inputCommentName = driver.findElement(By.name("comment_name"));
+		inputCommentName.sendKeys("A Name");
+		WebElement inputCommentText = driver.findElement(By.name("comment_text"));
+		inputCommentName.sendKeys("A new Comment");
+		WebElement submitButton = driver.findElement(By.id("comment_submit"));
+		submitButton.click();
+		WebElement error = driver.findElement(By.className("error"));
+		collector.checkThat(error.getText(),IsEqual.equalTo("Кода от снимката е грешен !!!"));
+		
+	}
 
 /**
  * Disposes of all resources which were in use
